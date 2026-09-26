@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PHYSX — Виртуальная лаборатория</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        PHYS<span>X</span>
+    </div>
+
+    <nav>
+        <button class="nav-btn active" data-page="lab">
+            🔬 Лаборатория
+        </button>
+
+        <button class="nav-btn" data-page="achievements">
+            🏆 Достижения
+        </button>
+    </nav>
+
+    <div class="profile">
+        <div class="xp">
+            🟡 <span id="xp">0</span> XP
+        </div>
+
+        <div class="avatar">
+            P
+        </div>
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- ========================= -->
+    <!-- LAB PAGE -->
+    <!-- ========================= -->
+
+    <section id="labPage">
+
+        <div class="hero">
+
+            <div class="eyebrow">
+                ВИРТУАЛЬНАЯ ЛАБОРАТОРИЯ МЕХАНИКИ
+            </div>
+
+            <h1>
+                Не смотри на эксперимент.
+                <span>Проведи его.</span>
+            </h1>
+
+            <p>
+                Исследуй физику самостоятельно:
+                выдвигай гипотезы, меняй параметры,
+                проводи эксперименты и делай выводы.
+            </p>
+
+        </div>
+
+
+        <!-- EXPERIMENT SELECTOR -->
+
+        <section class="experiment-selector">
+
+            <h2>Выбери эксперимент</h2>
+
+            <div class="experiment-cards">
+
+                <button
+                    class="experiment-card active"
+                    data-experiment="projectile"
+                >
+
+                    <div class="experiment-icon">
+                        🏀
+                    </div>
+
+                    <div>
+                        <h3>Бросок тела</h3>
+
+                        <p>
+                            Исследуй зависимость
+                            траектории от угла и скорости.
+                        </p>
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="experiment-card"
+                    data-experiment="pendulum"
+                >
+
+                    <div class="experiment-icon">
+                        🪀
+                    </div>
+
+                    <div>
+                        <h3>Маятник</h3>
+
+                        <p>
+                            Исследуй зависимость периода
+                            от длины нити.
+                        </p>
+                    </div>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXPERIMENT -->
+
+        <section class="experiment">
+
+            <div class="experiment-main">
+
+                <div class="section-header">
+
+                    <div>
+                        <div class="experiment-label">
+                            ЭКСПЕРИМЕНТ
+                        </div>
+
+                        <h2 id="experimentTitle">
+                            🏀 Бросок тела под углом
+                        </h2>
+                    </div>
+
+                    <div class="status">
+                        ● Лаборатория готова
+                    </div>
+
+                </div>
+
+
+                <!-- HYPOTHESIS -->
+
+                <div class="hypothesis-box">
+
+                    <div class="hypothesis-icon">
+                        🔮
+                    </div>
+
+                    <div class="hypothesis-content">
+
+                        <h3>
+                            Сначала сделай прогноз
+                        </h3>
+
+                        <p id="hypothesisText">
+                            Какой угол броска даст
+                            наибольшую дальность при
+                            одинаковой начальной скорости?
+                        </p>
+
+                        <div
+                            class="hypothesis-options"
+                            id="hypothesisOptions"
+                        >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CANVAS -->
+
+                <div class="simulation">
+
+                    <canvas id="simulationCanvas"></canvas>
+
+                    <div class="simulation-info">
+
+                        <span id="simulationInfo">
+                            g = 9.81 м/с²
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESULTS -->
+
+                <div class="results-section">
+
+                    <div class="section-title">
+                        📊 Результаты
+                    </div>
+
+                    <div
+                        class="result-grid"
+                        id="resultGrid"
+                    >
+
+                    </div>
+
+                </div>
+
+
+                <!-- GRAPH -->
+
+                <div class="graph-section">
+
+                    <div class="section-title">
+                        📈 График
+                    </div>
+
+                    <canvas id="graphCanvas"></canvas>
+
+                </div>
+
+
+                <!-- EXPERIMENT HISTORY -->
+
+                <div class="history-section">
+
+                    <div class="section-title">
+                        🧪 Серия экспериментов
+                    </div>
+
+                    <div
+                        class="experiment-history"
+                        id="experimentHistory"
+                    >
+
+                        <div class="empty-history">
+                            Проведи первый эксперимент,
+                            чтобы увидеть результаты здесь.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONCLUSION -->
+
+                <div
+                    class="conclusion-box"
+                    id="conclusionBox"
+                >
+
+                    <div class="section-title">
+                        🧠 Сделай вывод
+                    </div>
+
+                    <p id="conclusionQuestion">
+                        Проведи минимум два эксперимента,
+                        чтобы сравнить результаты.
+                    </p>
+
+                    <textarea
+                        id="conclusionInput"
+                        placeholder="Напиши свой вывод..."
+                    ></textarea>
+
+                    <button
+                        class="check-conclusion"
+                        id="checkConclusion"
+                    >
+                        Проверить вывод
+                    </button>
+
+                    <div
+                        class="conclusion-result"
+                        id="conclusionResult"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <aside class="controls">
+
+                <div class="controls-header">
+                    <span>⚙️</span>
+                    <h3>Параметры</h3>
+                </div>
+
+
+                <div id="controlsContent">
+
+                </div>
+
+
+                <button
+                    class="launch-button"
+                    id="launchButton"
+                >
+                    ▶ Запустить эксперимент
+                </button>
+
+
+                <button
+                    class="reset-button"
+                    id="resetButton"
+                >
+                    ↻ Сбросить
+                </button>
+
+
+                <div class="lab-tip">
+
+                    <strong>💡 Совет</strong>
+
+                    <p>
+                        Меняй только один параметр
+                        за раз. Так ты сможешь понять,
+                        как именно он влияет на результат.
+                    </p>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- ACHIEVEMENTS PAGE -->
+    <!-- ========================= -->
+
+    <section
+        id="achievementsPage"
+        class="hidden"
+    >
+
+        <div class="page-title">
+
+            <div class="eyebrow">
+                ПРОГРЕСС ИССЛЕДОВАТЕЛЯ
+            </div>
+
+            <h1>
+                🏆 Достижения
+            </h1>
+
+            <p>
+                Экспериментируй, исследуй
+                и открывай новые достижения.
+            </p>
+
+        </div>
+
+        <div
+            class="achievement-grid"
+            id="achievementGrid"
+        >
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- NOTIFICATION -->
+
+<div
+    class="notification"
+    id="notification"
+>
+
+    <div class="notification-icon">
+        🏆
+    </div>
+
+    <div>
+
+        <strong id="notificationTitle">
+            Новое достижение!
+        </strong>
+
+        <p id="notificationText">
+            Ты открыл новое достижение.
+        </p>
+
+    </div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
